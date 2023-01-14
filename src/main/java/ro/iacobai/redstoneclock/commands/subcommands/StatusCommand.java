@@ -35,10 +35,10 @@ public class StatusCommand extends SubCommand {
             }
             else {
                 if(clock.getState()){
-                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.LIGHT_PURPLE+clock.getLocation()+ChatColor.WHITE+" ;State: "+ChatColor.GREEN+"ON"+ChatColor.WHITE+" ;Delay : "+ChatColor.LIGHT_PURPLE+clock.getTime());
+                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.LIGHT_PURPLE+clock.getLocation()+ChatColor.WHITE+", State: "+ChatColor.GREEN+"ON"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
                 }
                 else {
-                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.LIGHT_PURPLE+clock.getLocation()+ChatColor.WHITE+" ;State: "+ChatColor.RED+"OFF"+ChatColor.WHITE+" ;Delay : "+ChatColor.LIGHT_PURPLE+clock.getTime());
+                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.LIGHT_PURPLE+clock.getLocation()+ChatColor.WHITE+", State: "+ChatColor.RED+"OFF"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
                 }
             }
         }

@@ -1,5 +1,9 @@
 package ro.iacobai.redstoneclock.models;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+
 import java.lang.String;
 
 
@@ -15,7 +19,9 @@ public class Clock {
     public Clock(String name, String ownerUuid) {
         this.name = name;
         this.ownerUuid = ownerUuid;
-        this.location = "none";
+        World world = Bukkit.getWorld("world");
+        Location location = new Location(world,0,0,0);
+        this.location = location.toString();
         this.state = false;
         this.time = 10;
     }
