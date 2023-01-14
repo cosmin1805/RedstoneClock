@@ -1,9 +1,11 @@
 package ro.iacobai.redstoneclock.commands.subcommands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import ro.iacobai.redstoneclock.commands.SubCommand;
 import ro.iacobai.redstoneclock.models.Clock;
+import ro.iacobai.redstoneclock.utils.ClockConvertData;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
 public class StatusCommand extends SubCommand {
@@ -34,11 +36,12 @@ public class StatusCommand extends SubCommand {
                 player.sendMessage(ChatColor.RED+"THIS REDSTONE CLOCK DOESN'T EXIST!");
             }
             else {
+                Location location =  ClockConvertData.locationConvert(clock.getLocation());
                 if(clock.getState()){
-                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.LIGHT_PURPLE+clock.getLocation()+ChatColor.WHITE+", State: "+ChatColor.GREEN+"ON"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
+                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ()+ChatColor.WHITE+", World: "+ChatColor.LIGHT_PURPLE+location.getWorld().getName()+ChatColor.WHITE+", State: "+ChatColor.GREEN+"ON"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
                 }
                 else {
-                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.LIGHT_PURPLE+clock.getLocation()+ChatColor.WHITE+", State: "+ChatColor.RED+"OFF"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
+                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ()+ChatColor.WHITE+", World: "+ChatColor.LIGHT_PURPLE+location.getWorld().getName()+ChatColor.WHITE+", State: "+ChatColor.RED+"OFF"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
                 }
             }
         }
