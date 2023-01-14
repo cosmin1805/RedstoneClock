@@ -1,7 +1,7 @@
 package ro.iacobai.redstoneclock.utils;
 
 import com.google.gson.Gson;
-import org.bukkit.Location;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import ro.iacobai.redstoneclock.RedstoneClock;
@@ -28,19 +28,30 @@ public class ClockStorageUtil {
         }
         return true;
     }
-    public static Clock findClock(String name){
+    public static Clock findClock(String name,Player player){
         //linear search
         for (Clock clock : clocks){
-            if(clock.getName().equals(name)){
+            if(clock.getName().equals(name) && clock.getOwnerUuid().equals(player.getUniqueId().toString())){
                 return clock;
             }
         }
         return null;
     }
-    public static void deleteClock(String name) {
+    public static String listAllOwnerClocks(Player player) {
+        //linear search
+        String list = "";
+        int i = 0;
+        for (Clock clock : clocks){
+            if(clock.getOwnerUuid().equals(player.getUniqueId().toString())){
+                list+=" "+ChatColor.LIGHT_PURPLE+clock.getName()+ ChatColor.WHITE+",";
+            }
+        }
+        return list.substring(0,list.length()-1);
+    }
+    public static void deleteClock(String name , Player player) {
         //linear search
         for (Clock clock : clocks){
-            if(clock.getName().equals(name)){
+            if(clock.getName().equals(name) && clock.getOwnerUuid().equals(player.getUniqueId().toString())){
                 clocks.remove(clock);
                 break;
             }

@@ -44,7 +44,7 @@ public class Clock {
         this.location = location;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 

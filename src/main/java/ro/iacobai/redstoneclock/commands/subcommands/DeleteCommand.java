@@ -5,20 +5,20 @@ import org.bukkit.entity.Player;
 import ro.iacobai.redstoneclock.commands.SubCommand;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
-public class CreateCommand extends SubCommand {
+public class DeleteCommand extends SubCommand {
     @Override
     public String getName() {
-        return "create";
+        return "delete";
     }
 
     @Override
     public String getDescription() {
-        return "create a redstone clock";
+        return "delete a redstone clock"+ ChatColor.RED+ "(!IT WONT ASK FOR A CONFIRMATION!)";
     }
 
     @Override
     public String getSyntax() {
-        return "/rc create <name>";
+        return "/rc delete <name>";
     }
 
     @Override
@@ -28,11 +28,12 @@ public class CreateCommand extends SubCommand {
             player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
         }
         else if(args.length==2){
-            if(ClockStorageUtil.createClock(args[1],player)){
-                player.sendMessage(ChatColor.GREEN+"THE REDSTONE CLOCK HAS BEEN CREATED!");
+            if(ClockStorageUtil.findClock(args[1], player) == null){
+                player.sendMessage(ChatColor.RED+"THIS REDSTONE CLOCK DOESN'T EXIST!");
             }
             else {
-                player.sendMessage(ChatColor.RED+"THE NAME IS ALREADY USED!");
+                ClockStorageUtil.deleteClock(args[1], player);
+                player.sendMessage(ChatColor.GREEN+"THE REDSTONE CLOCK HAS BEEN DELETED!");
             }
         }
         else {
