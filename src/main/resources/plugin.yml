@@ -1,0 +1,8 @@
+name: RedstoneClock
+version: '${project.version}'
+main: ro.iacobai.redstoneclock.RedstoneClock
+api-version: 1.19
+authors: [ cosmin1805 ]
+commands:
+  rc:
+    description: redstone clock main command
