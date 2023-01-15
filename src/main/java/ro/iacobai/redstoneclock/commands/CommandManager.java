@@ -22,6 +22,7 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new StatusCommand());
         subcommands.add(new ChangeCommand());
         subcommands.add(new SelectCommand());
+        subcommands.add(new SetCommand());
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

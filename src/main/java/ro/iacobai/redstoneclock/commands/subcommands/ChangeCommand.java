@@ -40,16 +40,16 @@ public class ChangeCommand extends SubCommand {
                 if(clock.getState()){
                     clock.setState(false);
                     player.sendMessage(clock.getName()+":"+ ChatColor.WHITE+" State: "+ChatColor.RED+"OFF");
-                    int ID_REDSTONE = PlaceRedstoneBlock.getId(player,clock);
-                    int ID_AIR = PlaceAirBlock.getId(player,clock);
+                    int ID_REDSTONE = PlaceRedstoneBlock.getId(clock);
+                    int ID_AIR = PlaceAirBlock.getId(clock);
                     Bukkit.getScheduler().cancelTask(ID_AIR);
                     Bukkit.getScheduler().cancelTask(ID_REDSTONE);
                 }else {
                     clock.setState(true);
                     player.sendMessage(clock.getName()+":"+ ChatColor.WHITE+" State: "+ChatColor.GREEN+"ON");
-                    PlaceRedstoneBlock.run_task(player,clock);
+                    PlaceRedstoneBlock.run_task(clock);
                 }
-                ClockStorageUtil.updateClock(args[1],player,clock);
+                ClockStorageUtil.updateClock(clock);
             }
         }
         else {

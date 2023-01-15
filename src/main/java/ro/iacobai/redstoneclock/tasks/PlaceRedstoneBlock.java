@@ -2,7 +2,6 @@ package ro.iacobai.redstoneclock.tasks;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.redstoneclock.RedstoneClock;
 import ro.iacobai.redstoneclock.models.Clock;
@@ -10,12 +9,12 @@ import ro.iacobai.redstoneclock.models.Id;
 import ro.iacobai.redstoneclock.utils.ClockConvertData;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class PlaceRedstoneBlock {
 
     private  static ArrayList<Id> Ids = new ArrayList<>();
-    public static Integer getId(Player player,Clock clock) {
+    public static Integer getId(Clock clock) {
         for (Id id: Ids){
             if(id.getName()== clock.getName()&&id.getOwnerUUID()== clock.getOwnerUuid()){
                 return id.getID();
@@ -24,7 +23,7 @@ public class PlaceRedstoneBlock {
         return 0;
     }
 
-    public static void run_task(Player player,Clock clock){
+    public static void run_task(Clock clock){
         int delay = 0;
         if (clock !=null){
             delay = clock.getDelay()+ clock.getTime_on();
@@ -38,8 +37,8 @@ public class PlaceRedstoneBlock {
                     }
                     Location location = ClockConvertData.locationConvert(clock.getLocation());
                     location.getBlock().setBlockData(Material.REDSTONE_BLOCK.createBlockData());
-                    PlaceAirBlock.run_task(player, clock);
-                    run_task(player, clock);
+                    PlaceAirBlock.run_task(clock);
+                    run_task(clock);
                 }
             }
         }.runTaskLater(RedstoneClock.getPlugin(),delay*20).getTaskId();
@@ -49,6 +48,6 @@ public class PlaceRedstoneBlock {
                 return;
             }
         }
-        Ids.add(new Id(ID,player.getUniqueId().toString(), clock.getName()));
+        Ids.add(new Id(ID, clock.getOwnerUuid(), clock.getName()));
     }
 }

@@ -1,7 +1,6 @@
 package ro.iacobai.redstoneclock.utils;
 
 import com.google.gson.Gson;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import ro.iacobai.redstoneclock.RedstoneClock;
@@ -37,16 +36,19 @@ public class ClockStorageUtil {
         }
         return null;
     }
-    public static String listAllOwnerClocks(Player player) {
+    public static ArrayList<Clock> listAllClocks(){
+        return clocks;
+    }
+    public static ArrayList<Clock> listAllOwnerClocks(Player player) {
         //linear search
-        String list = "";
+        ArrayList<Clock> clock_list = new ArrayList<>();
         int i = 0;
         for (Clock clock : clocks){
             if(clock.getOwnerUuid().equals(player.getUniqueId().toString())){
-                list+=" "+ChatColor.LIGHT_PURPLE+clock.getName()+ ChatColor.WHITE+",";
+                clock_list.add(clock);
             }
         }
-        return list.substring(0,list.length()-1);
+        return clock_list;
     }
     public static void deleteClock(String name , Player player) {
         //linear search
@@ -56,16 +58,10 @@ public class ClockStorageUtil {
                 break;
             }
         }
-
-        try {
-            saveClocks();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
-    public static void updateClock(String name,Player player, Clock newClock){
+    public static void updateClock(Clock newClock){
         for (Clock clock : clocks){
-            if(clock.getName().equals(name) && clock.getOwnerUuid().equals(player.getUniqueId().toString())){
+            if(clock.getName().equals(newClock.getName()) && clock.getOwnerUuid().equals(newClock.getOwnerUuid())){
                 clock.setLocation(newClock.getLocation());
                 clock.setDelay(newClock.getDelay());
                 clock.setTime_on(newClock.getTime_on());
@@ -73,11 +69,7 @@ public class ClockStorageUtil {
                 break;
             }
         }
-        try {
-            saveClocks();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
     public static void saveClocks() throws IOException {
         Gson gson = new Gson();
@@ -88,7 +80,6 @@ public class ClockStorageUtil {
         gson.toJson(clocks,writer);
         writer.flush();
         writer.close();
-        System.out.println("Clocks saved");
     }
 
     public  static  void loadClocks() throws IOException{
