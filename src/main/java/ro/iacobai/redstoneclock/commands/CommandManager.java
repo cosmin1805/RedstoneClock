@@ -7,10 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
-import ro.iacobai.redstoneclock.commands.subcommands.CreateCommand;
-import ro.iacobai.redstoneclock.commands.subcommands.DeleteCommand;
-import ro.iacobai.redstoneclock.commands.subcommands.ListCommand;
-import ro.iacobai.redstoneclock.commands.subcommands.StatusCommand;
+import ro.iacobai.redstoneclock.commands.subcommands.*;
 
 import java.util.ArrayList;
 
@@ -23,6 +20,7 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new ListCommand());
         subcommands.add(new DeleteCommand());
         subcommands.add(new StatusCommand());
+        subcommands.add(new ChangeCommand());
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

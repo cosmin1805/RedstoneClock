@@ -38,10 +38,10 @@ public class StatusCommand extends SubCommand {
             else {
                 Location location =  ClockConvertData.locationConvert(clock.getLocation());
                 if(clock.getState()){
-                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ()+ChatColor.WHITE+", World: "+ChatColor.LIGHT_PURPLE+location.getWorld().getName()+ChatColor.WHITE+", State: "+ChatColor.GREEN+"ON"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
+                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ()+ChatColor.WHITE+", World: "+ChatColor.LIGHT_PURPLE+location.getWorld().getName()+ChatColor.WHITE+", State: "+ChatColor.GREEN+"ON"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getDelay()+ChatColor.WHITE+", Time on: "+ChatColor.LIGHT_PURPLE+clock.getTime_on());
                 }
                 else {
-                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ()+ChatColor.WHITE+", World: "+ChatColor.LIGHT_PURPLE+location.getWorld().getName()+ChatColor.WHITE+", State: "+ChatColor.RED+"OFF"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getTime());
+                    player.sendMessage(clock.getName()+": "+"Location: "+ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ()+ChatColor.WHITE+", World: "+ChatColor.LIGHT_PURPLE+location.getWorld().getName()+ChatColor.WHITE+", State: "+ChatColor.RED+"OFF"+ChatColor.WHITE+", Delay: "+ChatColor.LIGHT_PURPLE+clock.getDelay()+ChatColor.WHITE+", Time on: "+ChatColor.LIGHT_PURPLE+clock.getTime_on());
                 }
             }
         }

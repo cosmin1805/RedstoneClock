@@ -14,7 +14,8 @@ public class Clock {
     private String ownerUuid;
     private String location;
     private boolean state;
-    private int time;
+    private int delay;
+    private int time_on;
 
     public Clock(String name, String ownerUuid) {
         this.name = name;
@@ -23,7 +24,8 @@ public class Clock {
         Location location = new Location(world,0,0,0);
         this.location = location.toString();
         this.state = false;
-        this.time = 10;
+        this.delay = 10;
+        this.time_on = 5;
     }
 
     public String getName() {
@@ -58,11 +60,20 @@ public class Clock {
         this.state = state;
     }
 
-    public int getTime() {
-        return time;
+
+    public int getDelay() {
+        return delay;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+
+    public int getTime_on() {
+        return time_on;
+    }
+
+    public void setTime_on(int time_on) {
+        this.time_on = time_on;
     }
 }

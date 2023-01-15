@@ -63,8 +63,21 @@ public class ClockStorageUtil {
             throw new RuntimeException(e);
         }
     }
-    public static Clock updateClock(String name, Clock newClock){
-        return null;
+    public static void updateClock(String name,Player player, Clock newClock){
+        for (Clock clock : clocks){
+            if(clock.getName().equals(name) && clock.getOwnerUuid().equals(player.getUniqueId().toString())){
+                clock.setLocation(newClock.getLocation());
+                clock.setDelay(newClock.getDelay());
+                clock.setTime_on(newClock.getTime_on());
+                clock.setState(newClock.getState());
+                break;
+            }
+        }
+        try {
+            saveClocks();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void saveClocks() throws IOException {
         Gson gson = new Gson();
