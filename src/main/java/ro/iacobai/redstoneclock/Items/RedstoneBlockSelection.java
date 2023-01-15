@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import ro.iacobai.redstoneclock.commands.subcommands.SelectCommand;
 import ro.iacobai.redstoneclock.models.Clock;
+import ro.iacobai.redstoneclock.utils.ClockConvertData;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class RedstoneBlockSelection implements Listener {
             }
             if (this.cooldown.containsKey(player.getUniqueId())==true) {
                 long timeE = System.currentTimeMillis() - cooldown.get(player.getUniqueId());
-                if (timeE < 1000) {
+                if (timeE < 5000) {
                     return;
                 }
                 else {
@@ -51,7 +52,12 @@ public class RedstoneBlockSelection implements Listener {
             }
             else {
                 Clock clock = ClockStorageUtil.findClock(name,player);
-                System.out.println(location.toString());
+
+                //WE MAKE SURE THE OLD REDSTONE CLOCK LOCATION IS SET TO AIR
+                Location clock_location = ClockConvertData.locationConvert(clock.getLocation());
+                clock_location.getBlock().setType(Material.AIR);
+
+
                 clock.setLocation(location.toString());
                 ClockStorageUtil.updateClock(clock);
                 player.sendMessage("REDSTONE CLOCK LOCATION: "+ ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ());
