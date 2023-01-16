@@ -1,14 +1,10 @@
 package ro.iacobai.redstoneclock.commands.subcommands;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.redstoneclock.RedstoneClock;
 import ro.iacobai.redstoneclock.commands.SubCommand;
-import ro.iacobai.redstoneclock.models.Clock;
-import ro.iacobai.redstoneclock.utils.ClockConvertData;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
 import java.util.HashMap;
@@ -45,7 +41,14 @@ public class SelectCommand extends SubCommand {
     public void perform(Player player, String[] args) {
         player.sendMessage(ChatColor.GREEN+"---------------------");
         if(args.length==1){
-            player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
+            if(getSelected_Clock(player) ==null){
+                player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
+            }
+            else {
+                SelectCommand.setSelected_Clock(player,null);
+                player.sendMessage(ChatColor.GREEN+"YOUR SELECTION HAS BEEN RESET");
+            }
+
         }
         else if(args.length==2){
             if(ClockStorageUtil.findClock(args[1], player) == null){
@@ -54,13 +57,8 @@ public class SelectCommand extends SubCommand {
             else {
                 setSelected_Clock(player,args[1]);
                 player.sendMessage(ChatColor.WHITE+"THE REDSTONE CLOCK: "+ChatColor.LIGHT_PURPLE+args[1]+ChatColor.WHITE+" HAS BEEN SELECTED");
-                player.sendMessage(ChatColor.WHITE+"YOU HAVE 120 second TO SELECT A NEW LOCATION FOR IT");
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        SelectCommand.setSelected_Clock(player,"");
-                    }
-                }.runTaskLater(RedstoneClock.getPlugin(),120*20);
+                player.sendMessage(ChatColor.WHITE+"TO CANCEL YOUR SELECTION TYPE /rc select");
+
             }
         }
         else {
