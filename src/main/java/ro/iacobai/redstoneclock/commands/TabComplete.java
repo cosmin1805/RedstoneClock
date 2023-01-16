@@ -32,7 +32,7 @@ public class TabComplete implements TabCompleter {
                 }
             }
         }
-        else if(args.length==3){
+        else if(args.length==3 && args[2].equals("set")){
             List<String> tabs =Arrays.asList("delay","time_on");
             return tabs;
         }

@@ -16,7 +16,7 @@ public class BlockBreakEventListener implements Listener {
         Location location = event.getBlock().getLocation();
         ArrayList<Clock> clocks = ClockStorageUtil.listAllClocks();
         for(Clock clock: clocks){
-            if(clock.getLocation().equals(location.toString())){
+            if(clock.getLocation().equals(location.toString()) && clock.getState()){
                 event.setCancelled(true);
                 event.getPlayer().sendMessage(ChatColor.RED+"YOU CAN'T BREAK THIS BLOCK!");
             }
