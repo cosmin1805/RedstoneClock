@@ -60,6 +60,7 @@ public class RedstoneBlockSelection implements Listener {
 
                 clock.setLocation(location.toString());
                 ClockStorageUtil.updateClock(clock);
+                SelectCommand.setSelected_Clock(player,"");
                 player.sendMessage("REDSTONE CLOCK LOCATION: "+ ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ());
             }
             player.sendMessage(ChatColor.GREEN+"---------------------");
