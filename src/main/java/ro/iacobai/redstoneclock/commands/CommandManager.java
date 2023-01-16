@@ -20,7 +20,7 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new ListCommand());
         subcommands.add(new DeleteCommand());
         subcommands.add(new StatusCommand());
-        subcommands.add(new ChangeCommand());
+        subcommands.add(new StateCommand());
         subcommands.add(new SelectCommand());
         subcommands.add(new SetCommand());
     }

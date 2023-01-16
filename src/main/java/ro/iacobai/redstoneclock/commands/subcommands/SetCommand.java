@@ -35,8 +35,14 @@ public class SetCommand extends SubCommand {
     }
     @Override
     public void perform(Player player, String[] args) {
-        player.sendMessage(ChatColor.GREEN+"---------------------");
-        if(args.length==4) {
+        if(args.length==3){
+            if (args[2]=="state"){
+                new StateCommand().perform(player,args);
+                return;
+            }
+        }
+        else if(args.length==4) {
+            player.sendMessage(ChatColor.GREEN+"---------------------");
             if(ClockStorageUtil.findClock(args[1], player) == null){
                 player.sendMessage(ChatColor.RED+"THIS REDSTONE CLOCK DOESN'T EXIST!");
                 player.sendMessage(ChatColor.GREEN + "---------------------");
@@ -70,6 +76,7 @@ public class SetCommand extends SubCommand {
             player.sendMessage(ChatColor.GREEN + "---------------------");
             return;
         }
+        player.sendMessage(ChatColor.GREEN+"---------------------");
         player.sendMessage(ChatColor.RED + getSyntax());
         player.sendMessage(ChatColor.GREEN + "---------------------");
     }

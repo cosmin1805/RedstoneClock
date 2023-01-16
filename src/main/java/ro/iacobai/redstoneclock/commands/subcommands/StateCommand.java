@@ -9,10 +9,10 @@ import ro.iacobai.redstoneclock.tasks.PlaceAirBlock;
 import ro.iacobai.redstoneclock.tasks.PlaceRedstoneBlock;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
-public class ChangeCommand extends SubCommand {
+public class StateCommand extends SubCommand {
     @Override
     public String getName() {
-        return "change";
+        return "state";
     }
 
     @Override
@@ -22,14 +22,14 @@ public class ChangeCommand extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/rc change <name>";
+        return "/rc state <name>";
     }
 
     @Override
     public void perform(Player player, String[] args) {
         player.sendMessage(ChatColor.GREEN+"---------------------");
         if(args.length==1){
-            player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
+            player.sendMessage(ChatColor.RED + getSyntax());
         }
         else if(args.length==2){
             Clock clock = ClockStorageUtil.findClock(args[1], player);

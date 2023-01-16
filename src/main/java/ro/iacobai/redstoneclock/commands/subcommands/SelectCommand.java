@@ -42,7 +42,7 @@ public class SelectCommand extends SubCommand {
         player.sendMessage(ChatColor.GREEN+"---------------------");
         if(args.length==1){
             if(getSelected_Clock(player) ==null){
-                player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
+                player.sendMessage(ChatColor.RED + getSyntax());
             }
             else {
                 SelectCommand.setSelected_Clock(player,null);

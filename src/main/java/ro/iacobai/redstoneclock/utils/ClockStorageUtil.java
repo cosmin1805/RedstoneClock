@@ -42,7 +42,6 @@ public class ClockStorageUtil {
     public static ArrayList<Clock> listAllOwnerClocks(Player player) {
         //linear search
         ArrayList<Clock> clock_list = new ArrayList<>();
-        int i = 0;
         for (Clock clock : clocks){
             if(clock.getOwnerUuid().equals(player.getUniqueId().toString())){
                 clock_list.add(clock);
@@ -50,26 +49,27 @@ public class ClockStorageUtil {
         }
         return clock_list;
     }
-    public static void deleteClock(String name , Player player) {
+    public static boolean deleteClock(String name , Player player) {
         //linear search
         for (Clock clock : clocks){
             if(clock.getName().equals(name) && clock.getOwnerUuid().equals(player.getUniqueId().toString())){
                 clocks.remove(clock);
-                break;
+                return true;
             }
         }
+        return false;
     }
-    public static void updateClock(Clock newClock){
+    public static boolean updateClock(Clock newClock){
         for (Clock clock : clocks){
             if(clock.getName().equals(newClock.getName()) && clock.getOwnerUuid().equals(newClock.getOwnerUuid())){
                 clock.setLocation(newClock.getLocation());
                 clock.setDelay(newClock.getDelay());
                 clock.setTime_on(newClock.getTime_on());
                 clock.setState(newClock.getState());
-                break;
+                return true;
             }
         }
-
+        return false;
     }
     public static void saveClocks() throws IOException {
         Gson gson = new Gson();

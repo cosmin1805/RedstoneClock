@@ -25,14 +25,13 @@ public class DeleteCommand extends SubCommand {
     public void perform(Player player, String[] args) {
         player.sendMessage(ChatColor.GREEN+"---------------------");
         if(args.length==1){
-            player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
+            player.sendMessage(ChatColor.RED + getSyntax());
         }
         else if(args.length==2){
-            if(ClockStorageUtil.findClock(args[1], player) == null){
+            if(ClockStorageUtil.deleteClock(args[1], player) == false){
                 player.sendMessage(ChatColor.RED+"THIS REDSTONE CLOCK DOESN'T EXIST!");
             }
             else {
-                ClockStorageUtil.deleteClock(args[1], player);
                 player.sendMessage(ChatColor.GREEN+"THE REDSTONE CLOCK HAS BEEN DELETED!");
             }
         }

@@ -25,7 +25,7 @@ public class CreateCommand extends SubCommand {
     public void perform(Player player, String[] args) {
         player.sendMessage(ChatColor.GREEN+"---------------------");
         if(args.length==1){
-            player.sendMessage(ChatColor.RED+"YOU NEED TO PROVIDE A NAME!");
+            player.sendMessage(ChatColor.RED + getSyntax());
         }
         else if(args.length==2){
             if(ClockStorageUtil.createClock(args[1],player)){
