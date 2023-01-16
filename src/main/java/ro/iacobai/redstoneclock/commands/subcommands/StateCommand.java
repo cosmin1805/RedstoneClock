@@ -2,11 +2,14 @@ package ro.iacobai.redstoneclock.commands.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import ro.iacobai.redstoneclock.commands.SubCommand;
 import ro.iacobai.redstoneclock.models.Clock;
 import ro.iacobai.redstoneclock.tasks.PlaceAirBlock;
 import ro.iacobai.redstoneclock.tasks.PlaceRedstoneBlock;
+import ro.iacobai.redstoneclock.utils.ClockConvertData;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
 public class StateCommand extends SubCommand {
@@ -44,6 +47,9 @@ public class StateCommand extends SubCommand {
                     int ID_AIR = PlaceAirBlock.getId(clock);
                     Bukkit.getScheduler().cancelTask(ID_AIR);
                     Bukkit.getScheduler().cancelTask(ID_REDSTONE);
+                    //WE MAKE SURE THE OLD REDSTONE CLOCK LOCATION IS SET TO AIR
+                    Location clock_location = ClockConvertData.locationConvert(clock.getLocation());
+                    clock_location.getBlock().setType(Material.AIR);
                 }else {
                     clock.setState(true);
                     player.sendMessage(clock.getName()+":"+ ChatColor.WHITE+" State: "+ChatColor.GREEN+"ON");

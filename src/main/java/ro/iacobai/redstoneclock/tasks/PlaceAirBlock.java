@@ -36,6 +36,9 @@ public class PlaceAirBlock {
                         return;
                     }
                     Location location = ClockConvertData.locationConvert(clock.getLocation());
+                    if(!location.getBlock().getBlockData().getMaterial().equals(Material.REDSTONE_BLOCK)){
+                        return;
+                    }
                     location.getBlock().setBlockData(Material.AIR.createBlockData());
                 }
             }

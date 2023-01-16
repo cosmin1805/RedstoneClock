@@ -7,8 +7,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.redstoneclock.Items.RedstoneBlockSelection;
 import ro.iacobai.redstoneclock.commands.CommandManager;
 import ro.iacobai.redstoneclock.commands.TabComplete;
+import ro.iacobai.redstoneclock.events.BlockExplodeEntityEventListener;
+import ro.iacobai.redstoneclock.events.BlockPistonEventsListener;
 import ro.iacobai.redstoneclock.models.Clock;
 import ro.iacobai.redstoneclock.tasks.PlaceRedstoneBlock;
+import ro.iacobai.redstoneclock.events.BlockBreakEventListener;
 import ro.iacobai.redstoneclock.utils.ClockConvertData;
 import ro.iacobai.redstoneclock.utils.ClockStorageUtil;
 
@@ -24,6 +27,9 @@ public final class RedstoneClock extends JavaPlugin {
         getCommand("rc").setExecutor(new CommandManager());
         getCommand("rc").setTabCompleter(new TabComplete());
         getServer().getPluginManager().registerEvents(new RedstoneBlockSelection(),this);
+        getServer().getPluginManager().registerEvents(new BlockBreakEventListener(),this);
+        getServer().getPluginManager().registerEvents(new BlockPistonEventsListener(),this);
+        getServer().getPluginManager().registerEvents(new BlockExplodeEntityEventListener(),this);
         plugin = this;
         try {
             ClockStorageUtil.loadClocks();
@@ -31,6 +37,10 @@ public final class RedstoneClock extends JavaPlugin {
             throw new RuntimeException(e);
         }
         for (Clock clock: ClockStorageUtil.listAllClocks()){
+            Location location = ClockConvertData.locationConvert(clock.getLocation());
+            if(location.getBlock().getBlockData().getMaterial().equals(Material.REDSTONE_BLOCK)){
+                location.getBlock().setBlockData(Material.AIR.createBlockData());
+            }
             if(clock.getState()){
                 PlaceRedstoneBlock.run_task(clock);
             }

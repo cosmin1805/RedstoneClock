@@ -20,7 +20,7 @@ public class TabComplete implements TabCompleter {
             return tabs;
         }
         else if(args.length==2){
-            List<String> allowed_tabs =Arrays.asList("set","delete","select","status");
+            List<String> allowed_tabs =Arrays.asList("set","delete","select","status","state");
             for(String tab : allowed_tabs){
                 if(tab.equals(args[0])){
                     List<String> tabs =new ArrayList<>();
@@ -33,7 +33,7 @@ public class TabComplete implements TabCompleter {
             }
         }
         else if(args.length==3){
-            List<String> tabs =Arrays.asList("delay","time_on","state");
+            List<String> tabs =Arrays.asList("delay","time_on");
             return tabs;
         }
         List<String> tabs =Arrays.asList("");
