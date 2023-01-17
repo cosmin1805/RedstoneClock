@@ -38,7 +38,7 @@ public class SetCommand extends SubCommand {
     }
     @Override
     public void perform(Player player, String[] args) {
-        if(args.length==2) {
+        if(args.length>=2) {
             Clock clock = ClockStorageUtil.findClock(args[1], player);
             if (clock == null) {
                 player.sendMessage(ChatColor.RED + "THIS REDSTONE CLOCK DOESN'T EXIST!");
