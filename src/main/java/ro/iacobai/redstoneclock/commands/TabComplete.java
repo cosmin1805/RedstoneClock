@@ -16,7 +16,7 @@ public class TabComplete implements TabCompleter {
     public  List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
         if(args.length==1){
-            List<String> tabs =Arrays.asList("create","set","delete","list","select","status");
+            List<String> tabs =Arrays.asList("create","set","delete","list","select","status","state");
             return tabs;
         }
         else if(args.length==2){
